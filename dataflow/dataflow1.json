@@ -5,26 +5,14 @@
 		"typeProperties": {
 			"sources": [
 				{
-					"dataset": {
-						"referenceName": "DelimitedText1",
-						"type": "DatasetReference"
-					},
 					"name": "EmpTable"
 				},
 				{
-					"dataset": {
-						"referenceName": "DelimitedText2",
-						"type": "DatasetReference"
-					},
 					"name": "SalaryTable"
 				}
 			],
 			"sinks": [
 				{
-					"dataset": {
-						"referenceName": "DelimitedText3",
-						"type": "DatasetReference"
-					},
 					"name": "OutputResult"
 				}
 			],
@@ -51,8 +39,7 @@
 				"          Department as string",
 				"     ),",
 				"     allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> EmpTable",
+				"     validateSchema: false) ~> EmpTable",
 				"source(output(",
 				"          Name as string,",
 				"          Age as string,",
@@ -60,8 +47,7 @@
 				"          Salary as string",
 				"     ),",
 				"     allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> SalaryTable",
+				"     validateSchema: false) ~> SalaryTable",
 				"EmpTable, SalaryTable join(EmpTable@Age == SalaryTable@Age",
 				"     && EmpTable@Salary == SalaryTable@Salary,",
 				"     joinType:'inner',",
@@ -71,18 +57,6 @@
 				"EmpJoinSalaries derive(Gender = upper(Gender)) ~> ModifyColumns1",
 				"ModifyColumns1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     input(",
-				"          {First Name} as string,",
-				"          {Last Name} as string,",
-				"          Email as string,",
-				"          Phone as string,",
-				"          Gender as string,",
-				"          Age as string,",
-				"          {Job Title} as string,",
-				"          {Years Of Experience} as string,",
-				"          Salary as string,",
-				"          Department as string",
-				"     ),",
 				"     partitionFileNames:['EmpSalResult.csv'],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",

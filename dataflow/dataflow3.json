@@ -5,26 +5,14 @@
 		"typeProperties": {
 			"sources": [
 				{
-					"dataset": {
-						"referenceName": "DelimitedText1",
-						"type": "DatasetReference"
-					},
 					"name": "EmpExistsTest"
 				},
 				{
-					"dataset": {
-						"referenceName": "DelimitedText4",
-						"type": "DatasetReference"
-					},
 					"name": "DeptEmpExists"
 				}
 			],
 			"sinks": [
 				{
-					"dataset": {
-						"referenceName": "DelimitedText3",
-						"type": "DatasetReference"
-					},
 					"name": "sink1"
 				}
 			],
@@ -47,32 +35,18 @@
 				"          Department as string",
 				"     ),",
 				"     allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> EmpExistsTest",
+				"     validateSchema: false) ~> EmpExistsTest",
 				"source(output(",
 				"          DeptID as string,",
 				"          Department as string",
 				"     ),",
 				"     allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> DeptEmpExists",
+				"     validateSchema: false) ~> DeptEmpExists",
 				"EmpExistsTest, DeptEmpExists exists(EmpExistsTest@Department == DeptEmpExists@Department,",
 				"     negate:true,",
 				"     broadcast: 'auto')~> exists1",
 				"exists1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     input(",
-				"          {First Name} as string,",
-				"          {Last Name} as string,",
-				"          Email as string,",
-				"          Phone as string,",
-				"          Gender as string,",
-				"          Age as string,",
-				"          {Job Title} as string,",
-				"          {Years Of Experience} as string,",
-				"          Salary as string,",
-				"          Department as string",
-				"     ),",
 				"     partitionFileNames:['existsdf.csv'],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",

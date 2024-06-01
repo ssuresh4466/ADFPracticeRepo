@@ -6,26 +6,14 @@
 		"typeProperties": {
 			"sources": [
 				{
-					"dataset": {
-						"referenceName": "DelimitedText1",
-						"type": "DatasetReference"
-					},
 					"name": "Emp"
 				},
 				{
-					"dataset": {
-						"referenceName": "DelimitedText4",
-						"type": "DatasetReference"
-					},
 					"name": "dept"
 				}
 			],
 			"sinks": [
 				{
-					"dataset": {
-						"referenceName": "DelimitedText3",
-						"type": "DatasetReference"
-					},
 					"name": "sink1"
 				}
 			],
@@ -51,15 +39,13 @@
 				"          Department as string",
 				"     ),",
 				"     allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> Emp",
+				"     validateSchema: false) ~> Emp",
 				"source(output(",
 				"          DeptID as string,",
 				"          Department as string",
 				"     ),",
 				"     allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> dept",
+				"     validateSchema: false) ~> dept",
 				"Emp, dept join(Emp@Department == dept@Department,",
 				"     joinType:'inner',",
 				"     matchType:'exact',",
@@ -69,18 +55,6 @@
 				"     Count = count(Emp@Department)) ~> aggregate1",
 				"aggregate1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     input(",
-				"          {First Name} as string,",
-				"          {Last Name} as string,",
-				"          Email as string,",
-				"          Phone as string,",
-				"          Gender as string,",
-				"          Age as string,",
-				"          {Job Title} as string,",
-				"          {Years Of Experience} as string,",
-				"          Salary as string,",
-				"          Department as string",
-				"     ),",
 				"     partitionFileNames:['Outputfile.csv'],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",

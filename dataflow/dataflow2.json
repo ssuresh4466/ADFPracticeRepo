@@ -5,26 +5,14 @@
 		"typeProperties": {
 			"sources": [
 				{
-					"dataset": {
-						"referenceName": "DelimitedText1",
-						"type": "DatasetReference"
-					},
 					"name": "empstream"
 				}
 			],
 			"sinks": [
 				{
-					"dataset": {
-						"referenceName": "DelimitedText3",
-						"type": "DatasetReference"
-					},
 					"name": "sink1"
 				},
 				{
-					"dataset": {
-						"referenceName": "DelimitedText3",
-						"type": "DatasetReference"
-					},
 					"name": "sink2"
 				}
 			],
@@ -47,43 +35,18 @@
 				"          Department as string",
 				"     ),",
 				"     allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> empstream",
+				"     validateSchema: false) ~> empstream",
 				"empstream split(equals(Salary, '9500'),",
 				"     equals(Salary, '9500'),",
 				"     disjoint: false) ~> split1@(stream1, stream2)",
 				"split1@stream1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     input(",
-				"          {First Name} as string,",
-				"          {Last Name} as string,",
-				"          Email as string,",
-				"          Phone as string,",
-				"          Gender as string,",
-				"          Age as string,",
-				"          {Job Title} as string,",
-				"          {Years Of Experience} as string,",
-				"          Salary as string,",
-				"          Department as string",
-				"     ),",
 				"     partitionFileNames:['Sal9500.csv'],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     partitionBy('hash', 1)) ~> sink1",
 				"split1@stream2 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     input(",
-				"          {First Name} as string,",
-				"          {Last Name} as string,",
-				"          Email as string,",
-				"          Phone as string,",
-				"          Gender as string,",
-				"          Age as string,",
-				"          {Job Title} as string,",
-				"          {Years Of Experience} as string,",
-				"          Salary as string,",
-				"          Department as string",
-				"     ),",
 				"     partitionFileNames:['Sal8500.csv'],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",

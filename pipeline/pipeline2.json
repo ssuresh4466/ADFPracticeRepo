@@ -17,10 +17,6 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"dataset": {
-						"referenceName": "Binary4",
-						"type": "DatasetReference"
-					},
 					"logStorageSettings": {
 						"linkedServiceName": {
 							"referenceName": "AzureBlobStorageLinkedService1",
@@ -52,10 +48,6 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"dataset": {
-						"referenceName": "Binary4",
-						"type": "DatasetReference"
-					},
 					"fieldList": [
 						"itemName",
 						"lastModified",
@@ -115,19 +107,7 @@
 									}
 								},
 								"enableStaging": false
-							},
-							"inputs": [
-								{
-									"referenceName": "Binary2",
-									"type": "DatasetReference"
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "Binary4",
-									"type": "DatasetReference"
-								}
-							]
+							}
 						}
 					],
 					"ifTrueActivities": [
@@ -161,19 +141,7 @@
 									}
 								},
 								"enableStaging": false
-							},
-							"inputs": [
-								{
-									"referenceName": "Binary2",
-									"type": "DatasetReference"
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "Binary1",
-									"type": "DatasetReference"
-								}
-							]
+							}
 						}
 					]
 				}
@@ -232,19 +200,7 @@
 									}
 								},
 								"enableStaging": false
-							},
-							"inputs": [
-								{
-									"referenceName": "Binary1",
-									"type": "DatasetReference"
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "Binary2",
-									"type": "DatasetReference"
-								}
-							]
+							}
 						}
 					],
 					"timeout": "0.12:00:00"
