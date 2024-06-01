@@ -1,0 +1,67 @@
+{
+	"name": "Filter_Transformation",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText1",
+						"type": "DatasetReference"
+					},
+					"name": "EmpTbl"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText3",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "filter1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          {First Name} as string,",
+				"          {Last Name} as string,",
+				"          Email as string,",
+				"          Phone as string,",
+				"          Gender as string,",
+				"          Age as string,",
+				"          {Job Title} as string,",
+				"          {Years Of Experience} as string,",
+				"          Salary as string,",
+				"          Department as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> EmpTbl",
+				"EmpTbl filter(like({Department}, '%Human %') && equals(Salary, \"11000\")) ~> filter1",
+				"filter1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          {First Name} as string,",
+				"          {Last Name} as string,",
+				"          Email as string,",
+				"          Phone as string,",
+				"          Gender as string,",
+				"          Age as string,",
+				"          {Job Title} as string,",
+				"          {Years Of Experience} as string,",
+				"          Salary as string,",
+				"          Department as string",
+				"     ),",
+				"     partitionFileNames:['FilterTrans.csv'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1"
+			]
+		}
+	}
+}

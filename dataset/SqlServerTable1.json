@@ -1,0 +1,49 @@
+{
+	"name": "SqlServerTable1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServerLinkedService",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"ServerName": {
+					"value": "@dataset().schema",
+					"type": "Expression"
+				},
+				"DBName": {
+					"value": "@dataset().table",
+					"type": "Expression"
+				},
+				"Password": {
+					"value": "@dataset().schema",
+					"type": "Expression"
+				},
+				"UserName": {
+					"value": "@dataset().table",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"schema": {
+				"type": "string"
+			},
+			"table": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "@dataset().schema",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().table",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

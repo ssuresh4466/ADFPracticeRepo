@@ -1,0 +1,9 @@
+{
+	"name": "ssuresh446-df",
+	"location": "eastasia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "e9b17e35-2098-4f53-a862-7c0f0768f484",
+		"tenantId": "0c5787bb-2f7d-4a29-9f83-7b3bb01f2b85"
+	}
+}

@@ -1,0 +1,32 @@
+{
+	"name": "SqlServerLinkedService",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"parameters": {
+			"ServerName": {
+				"type": "string"
+			},
+			"DBName": {
+				"type": "string"
+			},
+			"Password": {
+				"type": "string"
+			},
+			"UserName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"server": "@{linkedService().ServerName}",
+			"database": "@{linkedService().DBName}",
+			"encrypt": "mandatory",
+			"trustServerCertificate": false,
+			"hostNameInCertificate": "",
+			"authenticationType": "SQL",
+			"userName": "@{linkedService().UserName}",
+			"password": "@{linkedService().Password}"
+		}
+	}
+}

@@ -1,0 +1,38 @@
+{
+	"name": "pipeline3_variables",
+	"properties": {
+		"activities": [
+			{
+				"name": "Append variable1",
+				"type": "AppendVariable",
+				"dependsOn": [],
+				"userProperties": [
+					{
+						"name": "Name after Append",
+						"value": "@pipeline().Settings.VArray"
+					}
+				],
+				"typeProperties": {
+					"variableName": "VArray",
+					"value": {
+						"value": "8",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"VArray": {
+				"type": "Array",
+				"defaultValue": [
+					"1",
+					"7",
+					"3"
+				]
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-05-28T10:51:54Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

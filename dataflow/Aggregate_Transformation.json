@@ -1,0 +1,95 @@
+{
+	"name": "Aggregate_Transformation",
+	"properties": {
+		"description": "Task : Find the count of employees in each dept",
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText1",
+						"type": "DatasetReference"
+					},
+					"name": "Emp"
+				},
+				{
+					"dataset": {
+						"referenceName": "DelimitedText4",
+						"type": "DatasetReference"
+					},
+					"name": "dept"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText3",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "join1"
+				},
+				{
+					"name": "aggregate1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          {First Name} as string,",
+				"          {Last Name} as string,",
+				"          Email as string,",
+				"          Phone as string,",
+				"          Gender as string,",
+				"          Age as string,",
+				"          {Job Title} as string,",
+				"          {Years Of Experience} as string,",
+				"          Salary as string,",
+				"          Department as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> Emp",
+				"source(output(",
+				"          DeptID as string,",
+				"          Department as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> dept",
+				"Emp, dept join(Emp@Department == dept@Department,",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join1",
+				"join1 aggregate(groupBy(Emp@Department),",
+				"     Count = count(Emp@Department)) ~> aggregate1",
+				"aggregate1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          {First Name} as string,",
+				"          {Last Name} as string,",
+				"          Email as string,",
+				"          Phone as string,",
+				"          Gender as string,",
+				"          Age as string,",
+				"          {Job Title} as string,",
+				"          {Years Of Experience} as string,",
+				"          Salary as string,",
+				"          Department as string",
+				"     ),",
+				"     partitionFileNames:['Outputfile.csv'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          Department,",
+				"          {First Name} = Count",
+				"     ),",
+				"     partitionBy('hash', 1)) ~> sink1"
+			]
+		}
+	}
+}
