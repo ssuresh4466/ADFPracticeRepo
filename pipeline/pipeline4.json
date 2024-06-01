@@ -15,16 +15,6 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"dataflow": {
-						"referenceName": "parameter_dataflow",
-						"type": "DataFlowReference",
-						"parameters": {
-							"parameter1": {
-								"value": "'@{pipeline().parameters.Depart}'",
-								"type": "Expression"
-							}
-						}
-					},
 					"compute": {
 						"coreCount": 8,
 						"computeType": "General"
